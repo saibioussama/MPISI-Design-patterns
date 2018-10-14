@@ -1,0 +1,10 @@
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\bin\Debug\DesginPattern.exe.config
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\bin\Debug\DesginPattern.exe
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\bin\Debug\DesginPattern.pdb
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\bin\Debug\DesginPattern_TP1.dll
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\bin\Debug\DesginPattern_TP1.pdb
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\obj\Debug\DesginPattern.csprojAssemblyReference.cache
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\obj\Debug\DesginPattern.csproj.CoreCompileInputs.cache
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\obj\Debug\DesginPattern.csproj.CopyComplete
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\obj\Debug\DesginPattern.exe
+C:\Users\saibi\source\repos\DesginPattern\DesginPattern\obj\Debug\DesginPattern.pdb
