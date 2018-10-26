@@ -28,7 +28,7 @@ namespace DesginPattern_TP1.Models
 
         private void Connect()
         {
-            if (Connection.State != System.Data.ConnectionState.Open)
+            if (Connection.State != ConnectionState.Open)
                 Connection.Open();
         }
 

@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DesginPattern_TP1\DesginPattern_TP1.csproj">
+    <ProjectReference Include="..\DesginPattern_TP1\DesginPattern_ClassLibrary.csproj">
       <Project>{edcad2e6-c3bd-4244-8c75-68f864a82a58}</Project>
-      <Name>DesginPattern_TP1</Name>
+      <Name>DesginPattern_ClassLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
