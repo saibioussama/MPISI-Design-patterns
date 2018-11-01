@@ -11,7 +11,7 @@ namespace DesginPattern_TP1.Actions.Models
     {
         public string GetAction()
         {
-            return "Noise action ";
+            return "Noise";
         }
     }
 }

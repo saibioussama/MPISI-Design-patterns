@@ -33,16 +33,20 @@
             this.ShapesComboBox = new System.Windows.Forms.ComboBox();
             this.ActionComboBox = new System.Windows.Forms.ComboBox();
             this.MakeShapeBtn = new System.Windows.Forms.Button();
+            this.ResultLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Controls.Add(this.ResultLabel, 0, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -53,16 +57,17 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 6;
+            this.tableLayoutPanel2.ColumnCount = 7;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel2.Controls.Add(this.ShapesComboBox, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ActionComboBox, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.MakeShapeBtn, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ActionComboBox, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.MakeShapeBtn, 5, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -73,32 +78,43 @@
             // 
             // ShapesComboBox
             // 
-            this.ShapesComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ShapesComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ShapesComboBox.FormattingEnabled = true;
-            this.ShapesComboBox.Location = new System.Drawing.Point(43, 3);
+            this.ShapesComboBox.Location = new System.Drawing.Point(43, 10);
             this.ShapesComboBox.Name = "ShapesComboBox";
-            this.ShapesComboBox.Size = new System.Drawing.Size(172, 24);
+            this.ShapesComboBox.Size = new System.Drawing.Size(167, 24);
             this.ShapesComboBox.TabIndex = 0;
             // 
             // ActionComboBox
             // 
-            this.ActionComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ActionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ActionComboBox.FormattingEnabled = true;
-            this.ActionComboBox.Location = new System.Drawing.Point(221, 3);
+            this.ActionComboBox.Location = new System.Drawing.Point(236, 10);
             this.ActionComboBox.Name = "ActionComboBox";
-            this.ActionComboBox.Size = new System.Drawing.Size(172, 24);
+            this.ActionComboBox.Size = new System.Drawing.Size(167, 24);
             this.ActionComboBox.TabIndex = 1;
             // 
             // MakeShapeBtn
             // 
-            this.MakeShapeBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MakeShapeBtn.Location = new System.Drawing.Point(577, 3);
+            this.MakeShapeBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MakeShapeBtn.Location = new System.Drawing.Point(582, 3);
             this.MakeShapeBtn.Name = "MakeShapeBtn";
-            this.MakeShapeBtn.Size = new System.Drawing.Size(172, 23);
+            this.MakeShapeBtn.Size = new System.Drawing.Size(167, 38);
             this.MakeShapeBtn.TabIndex = 2;
             this.MakeShapeBtn.Text = "Make shape";
             this.MakeShapeBtn.UseVisualStyleBackColor = true;
+            this.MakeShapeBtn.Click += new System.EventHandler(this.MakeShapeBtn_Click);
+            // 
+            // ResultLabel
+            // 
+            this.ResultLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResultLabel.AutoSize = true;
+            this.ResultLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ResultLabel.Location = new System.Drawing.Point(3, 236);
+            this.ResultLabel.Name = "ResultLabel";
+            this.ResultLabel.Size = new System.Drawing.Size(794, 28);
+            this.ResultLabel.TabIndex = 1;
+            this.ResultLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Home
             // 
@@ -109,6 +125,7 @@
             this.Name = "Home";
             this.Text = "Form1";
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -121,6 +138,7 @@
         private System.Windows.Forms.ComboBox ShapesComboBox;
         private System.Windows.Forms.ComboBox ActionComboBox;
         private System.Windows.Forms.Button MakeShapeBtn;
+        private System.Windows.Forms.Label ResultLabel;
     }
 }
 
