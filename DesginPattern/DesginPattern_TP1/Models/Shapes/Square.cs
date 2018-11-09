@@ -9,14 +9,22 @@ namespace DesginPattern_TP1.Shapes.Models
 {
     public class Square : IShape
     {
-        public IAction Action { get; set; }
+        #region Constractors
 
         public Square(IAction _Action)
         {
             Action = _Action;
         }
 
-        string IShape.GetType()
+        #endregion
+
+        #region Operations
+
+        
+
+        #endregion
+
+        public override string GetShape()
         {
             return nameof(Square);
         }

@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
 
 namespace DesignPattern_WinForms
 {
@@ -18,24 +18,32 @@ namespace DesignPattern_WinForms
         List<ShapeFactory.ShapeType> Shapes;
         List<ActionFactory.ActionType> Actions;
 
+        IShape ParentShape;
+
         public Home()
         {
             InitializeComponent();
+
             Shapes = Enum.GetValues(typeof(ShapeFactory.ShapeType)).Cast<ShapeFactory.ShapeType>().ToList();
             Actions = Enum.GetValues(typeof(ActionFactory.ActionType)).Cast<ActionFactory.ActionType>().ToList();
-            ActionComboBox.DataSource = Actions;
-            ShapesComboBox.DataSource = Shapes;
+            ActionsComboBox.DataSource = Actions;
+            ShapesCombobox.DataSource = Shapes;
         }
 
-        private void MakeShapeBtn_Click(object sender, EventArgs e)
+        private void CreateBtn_Click(object sender, EventArgs e)
         {
-            var shapeType = Shapes[ShapesComboBox.SelectedIndex];
-            var actionType = Actions[ActionComboBox.SelectedIndex];
-            var action = ActionFactory.GetAction(actionType);
-            var shape = ShapeFactory.GetShape(shapeType,action);
+            var shapeType = Shapes[ShapesCombobox.SelectedIndex];
+            var actionType = Actions[ActionsComboBox.SelectedIndex];
 
+            var action = ActionFactory.Build(actionType);
+            var shape = ShapeFactory.Build(shapeType, action);
+            ParentShape = shape;
+            MyPanel.Controls.Add(new ShapeUserControl(ref ParentShape,ref shape, 1));
+        }
 
-            ResultLabel.Text = $"You chose '{shape.GetType()}' with '{shape.Action.GetAction()}' action.";
+        private void DetailsBtn_Click(object sender, EventArgs e)
+        {
+            DetailsLabel.Text = ParentShape.Details();
         }
     }
 }

@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace DesginPattern_TP1.Interfaces
 {
-    public interface IShape
+    public abstract class IShape
     {
-        IAction Action { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
-        string GetType();
+        public IAction Action { get; set; }
+
+        public abstract string GetShape();
+
+        public virtual void Add(IShape shape)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void Remove(IShape shape)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual string Details(int depth = 2) =>new string('-',depth) + $" {GetShape()}";
+
     }
 }

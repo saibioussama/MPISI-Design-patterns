@@ -11,3 +11,5 @@ C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\Des
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesignPattern_WinForms\bin\Debug\DesginPattern_TP1.dll
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesignPattern_WinForms\bin\Debug\DesginPattern_TP1.pdb
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesignPattern_WinForms\obj\Debug\DesignPattern_WinForms.csproj.CopyComplete
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesignPattern_WinForms\bin\Debug\Control.Draggable.dll
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesignPattern_WinForms\obj\Debug\DesignPattern_WinForms.ShapeUserControl.resources

@@ -18,7 +18,7 @@ namespace DesginPattern_TP1.Actions
 
         private ActionFactory() { }
 
-        public static IAction GetAction(ActionType actionType)
+        public static IAction Build(ActionType actionType)
         {
             switch (actionType)
             {

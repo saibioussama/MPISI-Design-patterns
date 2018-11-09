@@ -9,14 +9,21 @@ namespace DesginPattern_TP1.Shapes.Models
 {
     public class Circle : IShape
     {
-        public IAction Action { get; set; }
+        #region Constractors
 
         public Circle(IAction _Action)
         {
             Action = _Action;
         }
 
-        string IShape.GetType()
+        #endregion
+
+        #region Operations
+
+        
+        #endregion
+
+        public override string GetShape()
         {
             return nameof(Circle);
         }

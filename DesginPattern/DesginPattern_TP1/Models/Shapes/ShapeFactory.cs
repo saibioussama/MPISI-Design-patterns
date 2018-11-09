@@ -22,7 +22,7 @@ namespace DesginPattern_TP1.Models
 
         }
 
-        public static IShape GetShape(ShapeType shapeType, IAction action)
+        public static IShape Build(ShapeType shapeType, IAction action)
         {
             switch (shapeType)
             {
@@ -30,6 +30,20 @@ namespace DesginPattern_TP1.Models
                     return new Circle(action);
                 case ShapeType.Rectangle:
                     return new Rectangle(action);
+                case ShapeType.Square:
+                    return new Square(action);
+                default: return null;
+            }
+        }
+
+        public static IShape Build(ShapeType shapeType , IAction action, List<IShape> Shapes)
+        {
+            switch (shapeType)
+            {
+                case ShapeType.Circle:
+                    return new Circle(action);
+                case ShapeType.Rectangle:
+                    return new Rectangle(action, Shapes);
                 case ShapeType.Square:
                     return new Square(action);
                 default: return null;
