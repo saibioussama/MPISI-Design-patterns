@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DesginPattern_TP1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,5 +27,6 @@ namespace DesginPattern_TP1.Interfaces
 
         public virtual string Details(int depth = 2) =>new string('-',depth) + $" {GetShape()}";
 
+        public abstract new ShapeFactory.ShapeType GetType();
     }
 }

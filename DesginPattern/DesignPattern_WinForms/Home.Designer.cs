@@ -33,9 +33,9 @@
             this.ShapesCombobox = new System.Windows.Forms.ComboBox();
             this.ActionsComboBox = new System.Windows.Forms.ComboBox();
             this.CreateBtn = new System.Windows.Forms.Button();
-            this.MyPanel = new System.Windows.Forms.Panel();
             this.DetailsBtn = new System.Windows.Forms.Button();
             this.DetailsLabel = new System.Windows.Forms.Label();
+            this.MyPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,7 @@
             this.ShapesCombobox.Name = "ShapesCombobox";
             this.ShapesCombobox.Size = new System.Drawing.Size(148, 24);
             this.ShapesCombobox.TabIndex = 0;
+            this.ShapesCombobox.SelectedIndexChanged += new System.EventHandler(this.ShapesCombobox_SelectedIndexChanged);
             // 
             // ActionsComboBox
             // 
@@ -96,6 +97,7 @@
             this.ActionsComboBox.Name = "ActionsComboBox";
             this.ActionsComboBox.Size = new System.Drawing.Size(148, 24);
             this.ActionsComboBox.TabIndex = 1;
+            this.ActionsComboBox.SelectedIndexChanged += new System.EventHandler(this.ActionsComboBox_SelectedIndexChanged);
             // 
             // CreateBtn
             // 
@@ -108,14 +110,6 @@
             this.CreateBtn.Text = "Create";
             this.CreateBtn.UseVisualStyleBackColor = true;
             this.CreateBtn.Click += new System.EventHandler(this.CreateBtn_Click);
-            // 
-            // MyPanel
-            // 
-            this.MyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MyPanel.Location = new System.Drawing.Point(3, 3);
-            this.MyPanel.Name = "MyPanel";
-            this.MyPanel.Size = new System.Drawing.Size(634, 444);
-            this.MyPanel.TabIndex = 1;
             // 
             // DetailsBtn
             // 
@@ -137,6 +131,14 @@
             this.DetailsLabel.Name = "DetailsLabel";
             this.DetailsLabel.Size = new System.Drawing.Size(0, 38);
             this.DetailsLabel.TabIndex = 4;
+            // 
+            // MyPanel
+            // 
+            this.MyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MyPanel.Location = new System.Drawing.Point(3, 3);
+            this.MyPanel.Name = "MyPanel";
+            this.MyPanel.Size = new System.Drawing.Size(634, 444);
+            this.MyPanel.TabIndex = 1;
             // 
             // Home
             // 

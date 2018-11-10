@@ -18,6 +18,9 @@ namespace DesignPattern_WinForms
         List<ShapeFactory.ShapeType> Shapes;
         List<ActionFactory.ActionType> Actions;
 
+        public static ShapeFactory.ShapeType selectedShape;
+        public static ActionFactory.ActionType selectedAction;
+
         IShape ParentShape;
 
         public Home()
@@ -44,6 +47,16 @@ namespace DesignPattern_WinForms
         private void DetailsBtn_Click(object sender, EventArgs e)
         {
             DetailsLabel.Text = ParentShape.Details();
+        }
+
+        private void ShapesCombobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedShape = Shapes[ShapesCombobox.SelectedIndex];
+        }
+
+        private void ActionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectedAction= Actions[ActionsComboBox.SelectedIndex];
         }
     }
 }

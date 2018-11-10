@@ -1,4 +1,5 @@
 ﻿using DesginPattern_TP1.Interfaces;
+using DesginPattern_TP1.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,11 @@ namespace DesginPattern_TP1.Shapes.Models
         public override string GetShape()
         {
             return nameof(Circle);
+        }
+
+        public override ShapeFactory.ShapeType GetType()
+        {
+            return ShapeFactory.ShapeType.Circle;
         }
     }
 }
