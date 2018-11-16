@@ -1,6 +1,7 @@
 ﻿using DesginPattern_TP1.Actions;
 using DesginPattern_TP1.Interfaces;
 using DesginPattern_TP1.Models;
+using DesginPattern_TP1.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +22,7 @@ namespace DesignPattern_WinForms
         public static ShapeFactory.ShapeType selectedShape;
         public static ActionFactory.ActionType selectedAction;
 
-        IShape ParentShape;
+        Shape ParentShape;
 
         public Home()
         {

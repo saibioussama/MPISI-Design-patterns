@@ -42,14 +42,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\IObserver.cs" />
     <Compile Include="Interfaces\IShape.cs" />
+    <Compile Include="Interfaces\ISubject.cs" />
     <Compile Include="Models\Actions\ActionFactory.cs" />
+    <Compile Include="Models\Citation.cs" />
     <Compile Include="Models\Shapes\Circle.cs" />
     <Compile Include="Models\DbConnection.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Actions\MusicAction.cs" />
     <Compile Include="Models\Actions\NoiseAction.cs" />
     <Compile Include="Models\Shapes\Rectangle.cs" />
+    <Compile Include="Models\Shapes\Shape.cs" />
     <Compile Include="Models\Shapes\ShapeFactory.cs" />
     <Compile Include="Models\Shapes\Square.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

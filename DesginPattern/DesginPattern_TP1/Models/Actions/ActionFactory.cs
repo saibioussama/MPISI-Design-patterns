@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 
 namespace DesginPattern_TP1.Actions
 {
-    public class ActionFactory 
+  public class ActionFactory
+  {
+    public enum ActionType
     {
-        public enum ActionType
-        {
-            Music,
-            Noise
-        };
+      Music,
+      Noise
+    };
 
-        private ActionFactory() { }
+    private ActionFactory() { }
 
-        public static IAction Build(ActionType actionType)
-        {
-            switch (actionType)
-            {
-                case ActionType.Music:
-                    return new MusicAction();
-                case ActionType.Noise:
-                    return new NoiseAction();
-                default:
-                    return null;
-            }
-        }
+    public static IAction Build(ActionType actionType)
+    {
+      switch (actionType)
+      {
+        case ActionType.Music:
+          return new MusicAction();
+        case ActionType.Noise:
+          return new NoiseAction();
+        default:
+          return new NoiseAction();
+      }
     }
+  }
 }

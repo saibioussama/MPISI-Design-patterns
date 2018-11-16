@@ -10,14 +10,15 @@ using System.Windows.Forms;
 using DesginPattern_TP1.Interfaces;
 using DesginPattern_TP1.Models;
 using DesginPattern_TP1.Actions;
+using DesginPattern_TP1.Models.Shapes;
 
 namespace DesignPattern_WinForms
 {
     public partial class ShapeUserControl : UserControl
     {
         int depth;
-        IShape Shape;
-        IShape ParentShape;
+        Shape Shape;
+        Shape ParentShape;
         Random rand = new Random();
         Graphics graphics;
        
@@ -26,7 +27,7 @@ namespace DesignPattern_WinForms
             InitializeComponent();
         }
 
-        public ShapeUserControl(ref IShape parentShape, ref IShape shape, int depth)
+        public ShapeUserControl(ref Shape parentShape, ref Shape shape, int depth)
         {
             InitializeComponent();
             
@@ -38,7 +39,7 @@ namespace DesignPattern_WinForms
             ParentShape = parentShape;
             if (shape.GetType() == ShapeFactory.ShapeType.Rectangle)
             {
-                this.BackColor = ControlPaint.Light(Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255)));
+                this.BackColor = Color.FromArgb(rand.Next(50)+200, rand.Next(50) + 200, rand.Next(50) + 200);
             }
             else
             {
@@ -84,7 +85,7 @@ namespace DesignPattern_WinForms
             {
                 this.tableLayoutPanel2.RowCount++;
                 this.tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
-                IShape shape = ShapeFactory.Build(Home.selectedShape, ActionFactory.Build(Home.selectedAction));
+                Shape shape = ShapeFactory.Build(Home.selectedShape, ActionFactory.Build(Home.selectedAction));
                 Shape.Add(shape); 
                 this.tableLayoutPanel2.Controls.Add(new ShapeUserControl(ref Shape, ref shape, depth + 2), 0, 1);
             }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DesginPattern_TP1.Interfaces
 {
-    public interface IAction
-    {
-        string GetAction();
-    }
+  public interface IAction
+  {
+    string GetAction();
+  }
 }

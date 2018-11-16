@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DesginPattern_TP1.Actions.Models
 {
-    public class NoiseAction : IAction
+  public class NoiseAction : IAction
+  {
+    public string GetAction()
     {
-        public string GetAction()
-        {
-            return "Noise";
-        }
+      return "Noise";
     }
+
+  }
 }
