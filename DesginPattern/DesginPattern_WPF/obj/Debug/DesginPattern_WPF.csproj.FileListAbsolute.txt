@@ -12,3 +12,7 @@ C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\Des
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\obj\Debug\DesginPattern_WPF.csproj.CoreCompileInputs.cache
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\obj\Debug\DesginPattern_WPF.exe
 C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\obj\Debug\DesginPattern_WPF.pdb
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\bin\Debug\DesginPattern_TP1.dll
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\bin\Debug\DesginPattern_TP1.pdb
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\obj\Debug\DesginPattern_WPF.csprojAssemblyReference.cache
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_WPF\obj\Debug\DesginPattern_WPF.csproj.CopyComplete
