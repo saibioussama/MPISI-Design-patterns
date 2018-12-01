@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace DesginPatternCL.Interfaces
 {
-
-  public interface ISubject
+  public interface ICommand
   {
-    void Subscribe(IObserver observer);
-    void Unsubscribe(IObserver observer);
-    void Notify();
+    void Execute();
+    void Cancel();
   }
 }

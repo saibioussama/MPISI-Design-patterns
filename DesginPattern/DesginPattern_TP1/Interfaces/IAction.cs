@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPattern_TP1.Interfaces
+namespace DesginPatternCL.Interfaces
 {
   public interface IAction
   {
     string GetAction();
+    void DoSomething();
   }
 }

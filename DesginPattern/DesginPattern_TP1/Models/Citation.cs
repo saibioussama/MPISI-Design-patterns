@@ -1,12 +1,12 @@
-﻿using DesginPattern_TP1.Actions;
-using DesginPattern_TP1.Interfaces;
+﻿using DesginPatternCL.Actions;
+using DesginPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPattern_TP1.Models
+namespace DesginPatternCL.Models
 {
   public class Citation : ISubject
   {

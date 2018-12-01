@@ -1,17 +1,19 @@
-﻿using DesginPattern_TP1.Interfaces;
+﻿using DesginPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPattern_TP1.Models.Shapes
+namespace DesginPatternCL.Models.Shapes
 {
   public abstract class Shape : IObserver
   {
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
-    public Citation _Citation { get; set; }
+    public Citation _Citation { get; set; } // (Observator)
+
+    public System.Windows.Shapes.Shape SystemShape { get; set; } // (WPF Shapes)
 
     public IAction Action { get; set; } // (Strategie)
 
@@ -39,7 +41,7 @@ namespace DesginPattern_TP1.Models.Shapes
 
     public virtual string Details(int depth = 2) => new string('-', depth) + $" {GetShape()}";
 
-    #region Observer methods  (Observeur)
+    #region Observer methods  (Observateur)
 
     public void Update()
     {
@@ -47,6 +49,8 @@ namespace DesginPattern_TP1.Models.Shapes
     }
 
     #endregion
+
+    public abstract int GetPoid();
 
   }
 }

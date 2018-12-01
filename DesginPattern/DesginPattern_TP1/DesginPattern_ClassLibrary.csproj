@@ -31,6 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,11 +41,18 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\ICommand.cs" />
     <Compile Include="Interfaces\IObserver.cs" />
-    <Compile Include="Interfaces\IShape.cs" />
+    <Compile Include="Models\Actions\MessageAction.cs" />
+    <Compile Include="Models\Commands\MakeNoiseCommand.cs" />
+    <Compile Include="Models\Commands\PlayMusicCommand.cs" />
+    <Compile Include="Models\Commands\ShowMessageCommand.cs" />
+    <Compile Include="Models\Shapes\Decorators\BorderColor.cs" />
+    <Compile Include="Models\Shapes\ShapeDecorator.cs" />
     <Compile Include="Interfaces\ISubject.cs" />
     <Compile Include="Models\Actions\ActionFactory.cs" />
     <Compile Include="Models\Citation.cs" />
@@ -52,6 +61,7 @@
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Actions\MusicAction.cs" />
     <Compile Include="Models\Actions\NoiseAction.cs" />
+    <Compile Include="Models\Shapes\Decorators\BackgroundColor.cs" />
     <Compile Include="Models\Shapes\Rectangle.cs" />
     <Compile Include="Models\Shapes\Shape.cs" />
     <Compile Include="Models\Shapes\ShapeFactory.cs" />

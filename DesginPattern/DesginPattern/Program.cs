@@ -1,9 +1,10 @@
-﻿using DesginPattern_TP1.Actions;
-using DesginPattern_TP1.Actions.Models;
-using DesginPattern_TP1.Interfaces;
-using DesginPattern_TP1.Models;
-using DesginPattern_TP1.Models.Shapes;
-using DesginPattern_TP1.Repositories;
+﻿using DesginPatternCL.Actions;
+using DesginPatternCL.Actions.Models;
+using DesginPatternCL.Interfaces;
+using DesginPatternCL.Models;
+using DesginPatternCL.Models.Shapes;
+using DesginPatternCL.Models.Shapes.Decorators;
+using DesginPatternCL.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace DesginPattern
       //    Console.WriteLine();
       //    Console.WriteLine($"  * form : {shape.GetShape()} ===>  {shape.Action.GetAction()}");
       //}
-      
+
       // TP4 ====> Observateur
 
       //Observer ob = new Observer();
@@ -69,39 +70,56 @@ namespace DesginPattern
       //subject.Remove(ob.Update);
       //subject.Notify();
 
-      Citation citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
-      
-      Shape rectangle = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Noise),citation);
-      Shape ellipse = ShapeFactory.Build(ShapeFactory.ShapeType.Circle, ActionFactory.Build(ActionFactory.ActionType.Noise),citation);
-      Shape square = ShapeFactory.Build(ShapeFactory.ShapeType.Square, ActionFactory.Build(ActionFactory.ActionType.Music),citation);
-      
-      Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
-      Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
-      Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
-      
-      Console.WriteLine();
-      Console.WriteLine("========= Subscribe rectangle && square && ellipse");
-      Console.WriteLine();
+      //Citation citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
 
-      citation.Subscribe(rectangle);
-      citation.Subscribe(ellipse);
-      citation.Subscribe(square);
-      citation.Notify();
-      Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
-      Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
-      Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
+      //Shape rectangle = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Noise),citation);
+      //Shape ellipse = ShapeFactory.Build(ShapeFactory.ShapeType.Circle, ActionFactory.Build(ActionFactory.ActionType.Noise),citation);
+      //Shape square = ShapeFactory.Build(ShapeFactory.ShapeType.Square, ActionFactory.Build(ActionFactory.ActionType.Music),citation);
 
-      Console.WriteLine();
-      Console.WriteLine("========= Unsubscribe rectangle && square");
-      Console.WriteLine();
+      //Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
+      //Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
+      //Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
 
-      citation.Unsubscribe(rectangle);
-      citation.Unsubscribe(square);
-      citation.Action = ActionFactory.Build(ActionFactory.ActionType.Noise);
-      citation.Notify();
-      Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
-      Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
-      Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
+      //Console.WriteLine();
+      //Console.WriteLine("========= Subscribe rectangle && square && ellipse");
+      //Console.WriteLine();
+
+      //citation.Subscribe(rectangle);
+      //citation.Subscribe(ellipse);
+      //citation.Subscribe(square);
+      //citation.Notify();
+      //Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
+      //Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
+      //Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
+
+      //Console.WriteLine();
+      //Console.WriteLine("========= Unsubscribe rectangle && square");
+      //Console.WriteLine();
+
+      //citation.Unsubscribe(rectangle);
+      //citation.Unsubscribe(square);
+      //citation.Action = ActionFactory.Build(ActionFactory.ActionType.Noise);
+      //citation.Notify();
+      //Console.WriteLine($" {rectangle.GetShape()} - {rectangle.Action.GetAction()}");
+      //Console.WriteLine($" {ellipse.GetShape()} - {ellipse.Action.GetAction()}");
+      //Console.WriteLine($" {square.GetShape()} - {square.Action.GetAction()}");
+
+      Shape rectangle = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Music), new Citation());
+
+      Shape c = new BackgroundColor(rectangle);
+      Shape r1 = new BackgroundColor(c);
+      r1 = ShapeFactory.Build(ShapeFactory.ShapeType.Circle, ActionFactory.Build(ActionFactory.ActionType.Noise), new Citation());
+      Shape r2 = new BackgroundColor(r1);
+      r1 = new BackgroundColor(r1);
+      r1 = new BorderColor(r1);
+      Console.WriteLine($"{rectangle.GetShape()} - {rectangle.GetPoid()}");
+      Console.WriteLine($"{c.GetShape()} - {c.GetPoid()}");
+
+      c = new BorderColor(c);
+
+      Console.WriteLine($"{r1.GetShape()} - {r1.GetPoid()}");
+      Console.WriteLine($"{c.GetShape()} - {c.GetPoid()}");
+
 
       Console.ReadKey();
     }

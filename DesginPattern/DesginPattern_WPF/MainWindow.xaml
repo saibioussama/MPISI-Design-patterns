@@ -19,6 +19,7 @@
                           SelectedIndex="0"
                     Margin="10"/>
                 <ComboBox Name="ActionsCombobox"
+                          SelectedIndex="0"
                     Margin="10"/>
                 <Button Content="Add"
                         Margin="10"

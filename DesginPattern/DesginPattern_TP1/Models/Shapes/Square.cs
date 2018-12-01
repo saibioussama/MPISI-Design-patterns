@@ -1,13 +1,13 @@
-﻿using DesginPattern_TP1.Interfaces;
-using DesginPattern_TP1.Models;
-using DesginPattern_TP1.Models.Shapes;
+﻿using DesginPatternCL.Interfaces;
+using DesginPatternCL.Models;
+using DesginPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPattern_TP1.Shapes.Models
+namespace DesginPatternCL.Models.Shapes
 {
   public class Square : Shape
   {
@@ -17,6 +17,11 @@ namespace DesginPattern_TP1.Shapes.Models
     {
       _Citation = citation;
       Action = _Action;
+    }
+
+    public override int GetPoid()
+    {
+      return 0;
     }
 
     #endregion

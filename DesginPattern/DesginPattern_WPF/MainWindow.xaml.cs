@@ -1,4 +1,5 @@
-﻿using DesginPattern_TP1.Models;
+﻿using DesginPatternCL.Actions;
+using DesginPatternCL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,14 @@ namespace DesginPattern_WPF
   /// </summary>
   public partial class MainWindow : Window
   {
-    Nullable<Point> dragStart = null;
+    Point? dragStart = null;
     private Shape SelectedShape = null;
     private Size SelectedShapeSize;
-
+    private DesginPatternCL.Models.Shapes.Shape head = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Noise), new Citation());
     private List<ShapeFactory.ShapeType> Shapes = new List<ShapeFactory.ShapeType>();
+    private List<ActionFactory.ActionType> Actions = new List<ActionFactory.ActionType>();
+    private Citation Citation;
+    private DesginPatternCL.Models.Shapes.Shape Container;
 
     public Random rand { get; set; } = new Random();
 
@@ -33,9 +37,12 @@ namespace DesginPattern_WPF
     {
       InitializeComponent();
       Shapes = Enum.GetValues(typeof(ShapeFactory.ShapeType)).Cast<ShapeFactory.ShapeType>().ToList();
+      Actions = Enum.GetValues(typeof(ActionFactory.ActionType)).Cast<ActionFactory.ActionType>().ToList();
       ShapesCombobox.ItemsSource = Shapes;
+      ActionsCombobox.ItemsSource = Actions;
+      Citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
+      Container = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Music), Citation);
     }
-
 
     private void AddShapeBtn_Click(object sender, RoutedEventArgs e)
     {
@@ -48,13 +55,52 @@ namespace DesginPattern_WPF
           canvas.Children.Add(CreateEllipse(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
           break;
         case ShapeFactory.ShapeType.Square:
-          canvas.Children.Add(CreateRectangle(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
+          canvas.Children.Add(CreateSquare(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
           break;
         default:
           break;
       }
-
     }
+
+    private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+      if (SelectedShape != null)
+      {
+        SelectedShape.Height = SelectedShapeSize.Height * SizeSlider.Value / 100;
+        SelectedShape.Width = SelectedShapeSize.Width * SizeSlider.Value / 100;
+        SizeTextBlock.Text = SizeSlider.Value.ToString();
+      }
+    }
+
+    private void RemoveBtn_Click(object sender, RoutedEventArgs e)
+    {
+      canvas.Children.Remove(SelectedShape);
+    }
+
+    private void SetOnTopBtn_Click(object sender, RoutedEventArgs e)
+    {
+      canvas.Children.Remove(SelectedShape);
+      canvas.Children.Add(SelectedShape);
+    }
+
+    private void Draw(DesginPatternCL.Models.Shapes.Shape container)
+    {
+      canvas.Children.Add(container.SystemShape);
+      try
+      {
+        if(container.GetType()== ShapeFactory.ShapeType.Rectangle)
+        {
+          foreach (var shape in ((DesginPatternCL.Models.Shapes.Rectangle)container).Shapes)
+            Draw(shape);
+        }
+      }
+      catch
+      {
+
+      }
+    }
+
+    #region Create Shapes
 
     Rectangle CreateRectangle(Color color)
     {
@@ -74,19 +120,37 @@ namespace DesginPattern_WPF
     Ellipse CreateEllipse(Color color)
     {
       var size = rand.Next(150) + 50;
-
       var ellipse = new Ellipse()
       {
         Width = size,
         Height = size,
-        Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"C:\Users\saibi\OneDrive\Images\Saved Pictures\Square.JPG")) },
-        //Fill = new SolidColorBrush(color),
+        //Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"C:\Users\saibi\OneDrive\Images\Saved Pictures\Square.JPG")) },
+        Fill = new SolidColorBrush(color),
         Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
         StrokeThickness = 3,
       };
       enableDrag(ellipse);
       return ellipse;
     }
+
+    Rectangle CreateSquare(Color color)
+    {
+      var size = rand.Next(100) + 100;
+      var rect = new Rectangle()
+      {
+        Width = size,
+        Height = size,
+        Fill = new SolidColorBrush(color),
+        Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
+        StrokeThickness = 3,
+      };
+      enableDrag(rect);
+      return rect;
+    }
+
+    #endregion 
+
+    #region Drag & Drop 
 
     private void Shape_MouseUp(object sender, MouseButtonEventArgs e)
     {
@@ -123,25 +187,7 @@ namespace DesginPattern_WPF
       }
     }
 
-    private void SizeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-      if (SelectedShape != null)
-      {
-        SelectedShape.Height = SelectedShapeSize.Height * SizeSlider.Value / 100;
-        SelectedShape.Width = SelectedShapeSize.Width * SizeSlider.Value / 100;
-        SizeTextBlock.Text = SizeSlider.Value.ToString();
-      }
-    }
+    #endregion
 
-    private void RemoveBtn_Click(object sender, RoutedEventArgs e)
-    {
-      canvas.Children.Remove(SelectedShape);
-    }
-
-    private void SetOnTopBtn_Click(object sender, RoutedEventArgs e)
-    {
-      canvas.Children.Remove(SelectedShape);
-      canvas.Children.Add(SelectedShape);
-    }
   }
 }

@@ -1,12 +1,12 @@
-﻿using DesginPattern_TP1.Actions.Models;
-using DesginPattern_TP1.Interfaces;
+﻿using DesginPatternCL.Actions.Models;
+using DesginPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPattern_TP1.Actions
+namespace DesginPatternCL.Actions
 {
   public class ActionFactory
   {

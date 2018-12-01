@@ -7,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DesginPattern_TP1.Interfaces;
-using DesginPattern_TP1.Models;
-using DesginPattern_TP1.Actions;
-using DesginPattern_TP1.Models.Shapes;
+using DesginPatternCL.Interfaces;
+using DesginPatternCL.Models;
+using DesginPatternCL.Actions;
+using DesginPatternCL.Models.Shapes;
 
 namespace DesignPattern_WinForms
 {

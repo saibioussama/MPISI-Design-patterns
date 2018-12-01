@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
-namespace DesginPatternCL.Actions.Models
+namespace DesginPatternCL.Models.Actions
 {
-  public class MusicAction : IAction
+  class MessageAction : IAction
   {
     public void DoSomething()
     {
@@ -16,17 +17,17 @@ namespace DesginPatternCL.Actions.Models
 
     public string GetAction()
     {
-      return "Music";
+      throw new NotImplementedException();
     }
 
-    public void Play()
+    public void Show()
     {
-
+      Console.WriteLine("Hello World");
     }
 
-    public void Stop()
+    public void Hide()
     {
-
+      
     }
 
   }

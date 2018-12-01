@@ -1,7 +1,7 @@
-﻿using DesginPattern_TP1.Actions;
-using DesginPattern_TP1.Interfaces;
-using DesginPattern_TP1.Models;
-using DesginPattern_TP1.Models.Shapes;
+﻿using DesginPatternCL.Actions;
+using DesginPatternCL.Interfaces;
+using DesginPatternCL.Models;
+using DesginPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
