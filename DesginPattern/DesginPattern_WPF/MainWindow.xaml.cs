@@ -30,6 +30,7 @@ namespace DesginPattern_WPF
     private List<ActionFactory.ActionType> Actions = new List<ActionFactory.ActionType>();
     private Citation Citation;
     private DesginPatternCL.Models.Shapes.Shape Container;
+    private Dictionary<Shape, DesginPatternCL.Models.Shapes.Shape> dict = new Dictionary<Shape, DesginPatternCL.Models.Shapes.Shape>();
 
     public Random rand { get; set; } = new Random();
 
@@ -40,25 +41,37 @@ namespace DesginPattern_WPF
       Actions = Enum.GetValues(typeof(ActionFactory.ActionType)).Cast<ActionFactory.ActionType>().ToList();
       ShapesCombobox.ItemsSource = Shapes;
       ActionsCombobox.ItemsSource = Actions;
-      Citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
-      Container = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Music), Citation);
     }
 
     private void AddShapeBtn_Click(object sender, RoutedEventArgs e)
     {
+      DesginPatternCL.Models.Shapes.Shape shape = null;
       switch (Shapes[ShapesCombobox.SelectedIndex])
       {
         case ShapeFactory.ShapeType.Rectangle:
-          canvas.Children.Add(CreateRectangle(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
+          shape = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, Container.Action, Citation);
+          shape.SystemShape = CreateRectangle(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255))));
           break;
         case ShapeFactory.ShapeType.Circle:
-          canvas.Children.Add(CreateEllipse(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
+          shape = ShapeFactory.Build(ShapeFactory.ShapeType.Circle, Container.Action, Citation);
+          shape.SystemShape = CreateEllipse(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255))));
           break;
         case ShapeFactory.ShapeType.Square:
-          canvas.Children.Add(CreateSquare(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)))));
+          shape = ShapeFactory.Build(ShapeFactory.ShapeType.Square, Container.Action, Citation);
+          shape.SystemShape = CreateSquare(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255))));
           break;
         default:
           break;
+      }
+      var s = dict[SelectedShape];
+      if(s!= null && s.GetType() == ShapeFactory.ShapeType.Rectangle)
+      {
+        ((DesginPatternCL.Models.Shapes.Rectangle)s).Shapes.Add(shape);
+        canvas.Children.Add(shape.SystemShape);
+        Details.Text = Container.Details();
+        dict.Add(shape.SystemShape, shape);
+      }else{
+        MessageBox.Show($"We can't add shape to {s?.GetType().ToString()}");
       }
     }
 
@@ -74,7 +87,8 @@ namespace DesginPattern_WPF
 
     private void RemoveBtn_Click(object sender, RoutedEventArgs e)
     {
-      canvas.Children.Remove(SelectedShape);
+      var s = dict[SelectedShape];
+      s = null;
     }
 
     private void SetOnTopBtn_Click(object sender, RoutedEventArgs e)
@@ -88,7 +102,7 @@ namespace DesginPattern_WPF
       canvas.Children.Add(container.SystemShape);
       try
       {
-        if(container.GetType()== ShapeFactory.ShapeType.Rectangle)
+        if (container.GetType() == ShapeFactory.ShapeType.Rectangle)
         {
           foreach (var shape in ((DesginPatternCL.Models.Shapes.Rectangle)container).Shapes)
             Draw(shape);
@@ -102,13 +116,13 @@ namespace DesginPattern_WPF
 
     #region Create Shapes
 
-    Rectangle CreateRectangle(Color color)
+    Rectangle CreateRectangle(Color color, double h = 0, double w = 0)
     {
-      var size = rand.Next(50) + 50;
+      int size = rand.Next(50) + 50;
       var rect = new Rectangle()
       {
-        Width = rand.Next(100) + size,
-        Height = rand.Next(100) + size,
+        Width = w == 0 ? rand.Next(100) + size : w,
+        Height = h == 0 ? rand.Next(100) + size : h,
         Fill = new SolidColorBrush(color),
         Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
         StrokeThickness = 3,
@@ -167,6 +181,7 @@ namespace DesginPattern_WPF
       SelectedShape = (Shape)element;
       SelectedShapeSize.Height = SelectedShape.Height;
       SelectedShapeSize.Width = SelectedShape.Width;
+      SelectedShapeTextBlock.Text = SelectedShape.GetHashCode().ToString();
     }
 
     private void enableDrag(Shape shape)
@@ -189,5 +204,26 @@ namespace DesginPattern_WPF
 
     #endregion
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+      Citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
+      Container = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Music), Citation);
+      Container.SystemShape = CreateRectangle(Colors.White, canvas.ActualHeight, canvas.ActualWidth);
+      canvas.Children.Add(Container.SystemShape);
+      dict.Add(Container.SystemShape, Container);
+      SelectedShape = Container.SystemShape;
+      SelectedShapeSize.Height = SelectedShape.Height;
+      SelectedShapeSize.Width = SelectedShape.Width;
+    }
+
+    private DesginPatternCL.Models.Shapes.Shape GetModelFromShape(DesginPatternCL.Models.Shapes.Shape _Container, Shape shape)
+    {
+      if (shape.GetHashCode() == _Container.SystemShape.GetHashCode())
+        return _Container;
+      else if (_Container is DesginPatternCL.Models.Shapes.Rectangle)
+        foreach (var s in ((DesginPatternCL.Models.Shapes.Rectangle)_Container).Shapes)
+          return GetModelFromShape(s, shape);
+      return null;
+    }
   }
 }

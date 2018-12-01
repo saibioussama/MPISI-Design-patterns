@@ -3,6 +3,7 @@ using DesginPatternCL.Models;
 using DesginPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DesginPatternCL.Models.Shapes
 {
   public class Rectangle : Shape
   {
-    public List<Shape> Shapes = new List<Shape>();
+    public ObservableCollection<Shape> Shapes = new ObservableCollection<Shape>();
 
     #region Constratctors
 
@@ -25,7 +26,7 @@ namespace DesginPatternCL.Models.Shapes
     public Rectangle(IAction _Action, List<Shape> shapes,Citation citation)
     {
       Action = _Action;
-      Shapes = new List<Shape>(shapes);
+      Shapes = new ObservableCollection<Shape>(shapes);
       _Citation = citation;
     }
 
@@ -47,7 +48,7 @@ namespace DesginPatternCL.Models.Shapes
     {
       string result = new string('-', depth) + $" {GetShape()}\n";
       foreach (var shape in Shapes)
-        result += $"{shape.Details(depth + 4)}\n";
+        result += $"{shape.Details(depth + 4)}";
       return result;
     }
 

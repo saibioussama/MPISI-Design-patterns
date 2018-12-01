@@ -39,7 +39,7 @@ namespace DesginPatternCL.Models.Shapes
 
     #endregion
 
-    public virtual string Details(int depth = 2) => new string('-', depth) + $" {GetShape()}";
+    public virtual string Details(int depth = 2) => new string('-', depth) + $" {GetShape()}\n";
 
     #region Observer methods  (Observateur)
 

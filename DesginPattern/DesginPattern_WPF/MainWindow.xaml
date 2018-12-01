@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DesginPattern_WPF"
         mc:Ignorable="d" 
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+        Loaded="Window_Loaded"
+        >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -37,18 +39,27 @@
 
                 <Slider Name="SizeSlider"
                         ValueChanged="SizeSlider_ValueChanged"
-                        Maximum="200" 
+                        Maximum="100" 
                         Minimum="10" 
                         SmallChange="1" 
                         Value="100"/>
                 <TextBlock Name="SizeTextBlock"
                                Text="100"/>
+                <TextBlock Name="Details">
 
+                </TextBlock>
+                <TextBlock Name="SelectedShapeTextBlock">
+                    
+                </TextBlock>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1" 
+        <Grid Grid.Column="1"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch"
               Background="WhiteSmoke">
-            <Canvas Name="canvas"/>
+            <Canvas Name="canvas" 
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"/>
         </Grid>
     </Grid>
 </Window>
