@@ -1,13 +1,13 @@
-﻿using DesginPatternCL.Interfaces;
-using DesginPatternCL.Models;
-using DesginPatternCL.Models.Shapes;
+﻿using DesignPatternCL.Interfaces;
+using DesignPatternCL.Models;
+using DesignPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models.Shapes
+namespace DesignPatternCL.Models.Shapes
 {
   public class Square : Shape
   {

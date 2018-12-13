@@ -1,6 +1,6 @@
-﻿using DesginPatternCL.Interfaces;
-using DesginPatternCL.Models;
-using DesginPatternCL.Models.Shapes;
+﻿using DesignPatternCL.Interfaces;
+using DesignPatternCL.Models;
+using DesignPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,28 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace DesginPatternCL.Models.Shapes
+namespace DesignPatternCL.Models.Shapes
 {
   public class Rectangle : Shape
   {
-    public ObservableCollection<Shape> Shapes = new ObservableCollection<Shape>();
+    public List<Shape> Shapes = new List<Shape>();
 
-    #region Constratctors
-
-    public Rectangle(IAction _Action, Citation citation)
-    {
-      _Citation = citation;
-      Action = _Action;
-    }
-
-    public Rectangle(IAction _Action, List<Shape> shapes,Citation citation)
-    {
-      Action = _Action;
-      Shapes = new ObservableCollection<Shape>(shapes);
-      _Citation = citation;
-    }
-
-    #endregion
+    
 
     #region Operations
 
@@ -50,6 +35,23 @@ namespace DesginPatternCL.Models.Shapes
       foreach (var shape in Shapes)
         result += $"{shape.Details(depth + 4)}";
       return result;
+    }
+
+    #endregion
+
+    #region Constratctors
+
+    public Rectangle(IAction _Action, Citation citation)
+    {
+      _Citation = citation;
+      Action = _Action;
+    }
+
+    public Rectangle(IAction _Action, List<Shape> shapes,Citation citation)
+    {
+      Action = _Action;
+      Shapes = new List<Shape>(shapes);
+      _Citation = citation;
     }
 
     #endregion

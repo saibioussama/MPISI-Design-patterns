@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models
+namespace DesignPatternCL.Models
 {
     public class Log
     {

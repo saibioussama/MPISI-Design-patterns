@@ -1,5 +1,5 @@
-﻿using DesginPatternCL.Actions;
-using DesginPatternCL.Models;
+﻿using DesignPatternCL.Actions;
+using DesignPatternCL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +25,12 @@ namespace DesginPattern_WPF
     Point? dragStart = null;
     private Shape SelectedShape = null;
     private Size SelectedShapeSize;
-    private DesginPatternCL.Models.Shapes.Shape head = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Noise), new Citation());
+    private DesignPatternCL.Models.Shapes.Shape head = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Noise), new Citation());
     private List<ShapeFactory.ShapeType> Shapes = new List<ShapeFactory.ShapeType>();
     private List<ActionFactory.ActionType> Actions = new List<ActionFactory.ActionType>();
     private Citation Citation;
-    private DesginPatternCL.Models.Shapes.Shape Container;
-    private Dictionary<Shape, DesginPatternCL.Models.Shapes.Shape> dict = new Dictionary<Shape, DesginPatternCL.Models.Shapes.Shape>();
+    private DesignPatternCL.Models.Shapes.Shape Container;
+    private Dictionary<Shape, Tuple<DesignPatternCL.Models.Shapes.Shape, DesignPatternCL.Models.Shapes.Shape>> dict = new Dictionary<Shape, Tuple<DesignPatternCL.Models.Shapes.Shape, DesignPatternCL.Models.Shapes.Shape>>();
 
     public Random rand { get; set; } = new Random();
 
@@ -45,7 +45,7 @@ namespace DesginPattern_WPF
 
     private void AddShapeBtn_Click(object sender, RoutedEventArgs e)
     {
-      DesginPatternCL.Models.Shapes.Shape shape = null;
+      DesignPatternCL.Models.Shapes.Shape shape = null;
       switch (Shapes[ShapesCombobox.SelectedIndex])
       {
         case ShapeFactory.ShapeType.Rectangle:
@@ -64,13 +64,15 @@ namespace DesginPattern_WPF
           break;
       }
       var s = dict[SelectedShape];
-      if(s!= null && s.GetType() == ShapeFactory.ShapeType.Rectangle)
+      if (s != null && s.Item2.GetType() == ShapeFactory.ShapeType.Rectangle)
       {
-        ((DesginPatternCL.Models.Shapes.Rectangle)s).Shapes.Add(shape);
+        ((DesignPatternCL.Models.Shapes.Rectangle)s.Item2).Shapes.Add(shape);
         canvas.Children.Add(shape.SystemShape);
         Details.Text = Container.Details();
-        dict.Add(shape.SystemShape, shape);
-      }else{
+        dict.Add(shape.SystemShape, new Tuple<DesignPatternCL.Models.Shapes.Shape, DesignPatternCL.Models.Shapes.Shape>(s.Item2, shape));
+      }
+      else
+      {
         MessageBox.Show($"We can't add shape to {s?.GetType().ToString()}");
       }
     }
@@ -88,7 +90,13 @@ namespace DesginPattern_WPF
     private void RemoveBtn_Click(object sender, RoutedEventArgs e)
     {
       var s = dict[SelectedShape];
-      s = null;
+      if (s != null && s.Item1 != null && s.Item2 != null)
+      {
+        removeChildren(s.Item2);
+        ((DesignPatternCL.Models.Shapes.Rectangle)(s.Item1)).Remove(s.Item2);
+      }
+      Details.Text = Container.Details();
+      SelectedShape = Container.SystemShape;
     }
 
     private void SetOnTopBtn_Click(object sender, RoutedEventArgs e)
@@ -97,14 +105,14 @@ namespace DesginPattern_WPF
       canvas.Children.Add(SelectedShape);
     }
 
-    private void Draw(DesginPatternCL.Models.Shapes.Shape container)
+    private void Draw(DesignPatternCL.Models.Shapes.Shape container)
     {
       canvas.Children.Add(container.SystemShape);
       try
       {
         if (container.GetType() == ShapeFactory.ShapeType.Rectangle)
         {
-          foreach (var shape in ((DesginPatternCL.Models.Shapes.Rectangle)container).Shapes)
+          foreach (var shape in ((DesignPatternCL.Models.Shapes.Rectangle)container).Shapes)
             Draw(shape);
         }
       }
@@ -121,45 +129,59 @@ namespace DesginPattern_WPF
       int size = rand.Next(50) + 50;
       var rect = new Rectangle()
       {
-        Width = w == 0 ? rand.Next(100) + size : w,
-        Height = h == 0 ? rand.Next(100) + size : h,
+        Width = SelectedShape != null ? SelectedShape.Width / 4 : size,
+        Height = SelectedShape != null ? SelectedShape.Height / 4 : size,
         Fill = new SolidColorBrush(color),
         Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
         StrokeThickness = 3,
       };
+      if (SelectedShape != null)
+      {
+        Canvas.SetLeft(rect, Canvas.GetLeft(SelectedShape) + 5);
+        Canvas.SetTop(rect, Canvas.GetTop(SelectedShape) + 5);
+      }
       enableDrag(rect);
       return rect;
     }
 
     Ellipse CreateEllipse(Color color)
     {
-      var size = rand.Next(150) + 50;
+      int size = rand.Next(50) + 50;
       var ellipse = new Ellipse()
       {
-        Width = size,
-        Height = size,
-        //Fill = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"C:\Users\saibi\OneDrive\Images\Saved Pictures\Square.JPG")) },
+        Width = SelectedShape != null ? SelectedShape.Height / 4 : size,
+        Height = SelectedShape != null ? SelectedShape.Height / 4 : size,
         Fill = new SolidColorBrush(color),
         Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
         StrokeThickness = 3,
       };
+      if (SelectedShape != null)
+      {
+        Canvas.SetLeft(ellipse, Canvas.GetLeft(SelectedShape) + 5);
+        Canvas.SetTop(ellipse, Canvas.GetTop(SelectedShape) + 5);
+      }
       enableDrag(ellipse);
       return ellipse;
     }
 
     Rectangle CreateSquare(Color color)
     {
-      var size = rand.Next(100) + 100;
-      var rect = new Rectangle()
+      int size = rand.Next(50) + 50;
+      var square = new Rectangle()
       {
-        Width = size,
-        Height = size,
+        Width = SelectedShape != null ? SelectedShape.Width / 4 : size,
+        Height = SelectedShape != null ? SelectedShape.Width / 4 : size,
         Fill = new SolidColorBrush(color),
         Stroke = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
         StrokeThickness = 3,
       };
-      enableDrag(rect);
-      return rect;
+      if (SelectedShape != null)
+      {
+        Canvas.SetLeft(square, Canvas.GetLeft(SelectedShape) + 5);
+        Canvas.SetTop(square, Canvas.GetTop(SelectedShape) + 5);
+      }
+      enableDrag(square);
+      return square;
     }
 
     #endregion 
@@ -190,15 +212,30 @@ namespace DesginPattern_WPF
       shape.MouseUp += Shape_MouseUp;
       shape.MouseMove += Shape_MouseMove;
     }
+     
 
     private void Shape_MouseMove(object sender, MouseEventArgs e)
     {
       if (dragStart != null && e.LeftButton == MouseButtonState.Pressed)
       {
-        var element = (UIElement)sender;
         var p2 = e.GetPosition(canvas);
-        Canvas.SetLeft(element, p2.X - dragStart.Value.X);
-        Canvas.SetTop(element, p2.Y - dragStart.Value.Y);
+        var s = dict[(Shape)sender];
+        var _x = p2.X - dragStart.Value.X;
+        var _y = p2.Y - dragStart.Value.Y;
+        if (s != null && s.Item2 != null)
+        {
+          Canvas.SetTop(s.Item2.SystemShape, _y);
+          Canvas.SetLeft(s.Item2.SystemShape, _x);
+          if (Canvas.GetLeft(s.Item2.SystemShape) < Canvas.GetLeft(s.Item1.SystemShape))
+            Canvas.SetLeft(s.Item2.SystemShape, Canvas.GetLeft(s.Item1.SystemShape));
+          else if (Canvas.GetLeft(s.Item2.SystemShape) > Canvas.GetLeft(s.Item1.SystemShape) + s.Item1.SystemShape.ActualWidth - ((Shape)sender).ActualWidth)
+            Canvas.SetLeft(s.Item2.SystemShape, Canvas.GetLeft(s.Item1.SystemShape) + s.Item1.SystemShape.ActualWidth - ((Shape)sender).ActualWidth);
+
+          if (Canvas.GetTop(s.Item2.SystemShape) < Canvas.GetTop(s.Item1.SystemShape))
+            Canvas.SetTop(s.Item2.SystemShape, Canvas.GetTop(s.Item1.SystemShape));
+          else if (Canvas.GetTop(s.Item2.SystemShape) > Canvas.GetTop(s.Item1.SystemShape) + s.Item1.SystemShape.ActualHeight - ((Shape)sender).ActualHeight)
+            Canvas.SetTop(s.Item2.SystemShape, Canvas.GetTop(s.Item1.SystemShape) + s.Item1.SystemShape.ActualHeight - ((Shape)sender).ActualHeight);
+        }
       }
     }
 
@@ -209,21 +246,31 @@ namespace DesginPattern_WPF
       Citation = new Citation(ActionFactory.Build(ActionFactory.ActionType.Music));
       Container = ShapeFactory.Build(ShapeFactory.ShapeType.Rectangle, ActionFactory.Build(ActionFactory.ActionType.Music), Citation);
       Container.SystemShape = CreateRectangle(Colors.White, canvas.ActualHeight, canvas.ActualWidth);
+      Container.SystemShape.Width = 3000;
+      Container.SystemShape.Height = 2000;
       canvas.Children.Add(Container.SystemShape);
-      dict.Add(Container.SystemShape, Container);
+      dict.Add(Container.SystemShape, new Tuple<DesignPatternCL.Models.Shapes.Shape, DesignPatternCL.Models.Shapes.Shape>(null, Container));
       SelectedShape = Container.SystemShape;
       SelectedShapeSize.Height = SelectedShape.Height;
       SelectedShapeSize.Width = SelectedShape.Width;
     }
 
-    private DesginPatternCL.Models.Shapes.Shape GetModelFromShape(DesginPatternCL.Models.Shapes.Shape _Container, Shape shape)
+    private DesignPatternCL.Models.Shapes.Shape GetModelFromShape(DesignPatternCL.Models.Shapes.Shape _Container, Shape shape)
     {
       if (shape.GetHashCode() == _Container.SystemShape.GetHashCode())
         return _Container;
-      else if (_Container is DesginPatternCL.Models.Shapes.Rectangle)
-        foreach (var s in ((DesginPatternCL.Models.Shapes.Rectangle)_Container).Shapes)
+      else if (_Container is DesignPatternCL.Models.Shapes.Rectangle)
+        foreach (var s in ((DesignPatternCL.Models.Shapes.Rectangle)_Container).Shapes)
           return GetModelFromShape(s, shape);
       return null;
+    }
+
+    private void removeChildren(DesignPatternCL.Models.Shapes.Shape _Container)
+    {
+      canvas.Children.Remove(_Container.SystemShape);
+      if (_Container.GetType() == ShapeFactory.ShapeType.Rectangle)
+        foreach (var rect in ((DesignPatternCL.Models.Shapes.Rectangle)_Container).Shapes)
+          removeChildren(rect);
     }
   }
 }

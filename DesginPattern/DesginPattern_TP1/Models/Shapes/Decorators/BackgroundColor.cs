@@ -1,4 +1,4 @@
-﻿using DesginPatternCL.Interfaces;
+﻿using DesignPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace DesginPatternCL.Models.Shapes.Decorators
+namespace DesignPatternCL.Models.Shapes.Decorators
 {
   public class BackgroundColor : ShapeDecorator
   {

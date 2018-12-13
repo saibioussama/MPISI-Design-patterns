@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid Width="150"
+        <Grid Width="250"
               Grid.Column="0">
             <StackPanel >
                 <ComboBox Name="ShapesCombobox"
@@ -37,18 +37,19 @@
                         Content="Set on top"
                         Click="SetOnTopBtn_Click"/>
 
-                <Slider Name="SizeSlider"
+                <Slider Visibility="Hidden" Name="SizeSlider"
                         ValueChanged="SizeSlider_ValueChanged"
                         Maximum="100" 
                         Minimum="10" 
                         SmallChange="1" 
                         Value="100"/>
-                <TextBlock Name="SizeTextBlock"
+                <TextBlock Visibility="Hidden" Name="SizeTextBlock"
                                Text="100"/>
-                <TextBlock Name="Details">
+                <TextBlock Name="Details" FontSize="18" FontWeight="Bold">
 
                 </TextBlock>
-                <TextBlock Name="SelectedShapeTextBlock">
+                <TextBlock Visibility="Hidden"
+                           Name="SelectedShapeTextBlock">
                     
                 </TextBlock>
             </StackPanel>

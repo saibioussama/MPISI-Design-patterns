@@ -1,14 +1,14 @@
-﻿using DesginPatternCL.Interfaces;
-using DesginPatternCL.Models.Actions;
+﻿using DesignPatternCL.Interfaces;
+using DesignPatternCL.Models.Actions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models.Commands
+namespace DesignPatternCL.Models.Commands
 {
-  class ShowMessageCommand : ICommand
+  public class ShowMessageCommand : ICommand
   {
     private MessageAction messageAction;
 

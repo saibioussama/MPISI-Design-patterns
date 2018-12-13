@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models
+namespace DesignPatternCL.Models
 {
   public class DbConnection
   {
@@ -22,7 +22,7 @@ namespace DesginPatternCL.Models
 
     public static DbConnection GetInstance() => instance;
 
-    private static string ConnectionString = @"Server=DESKTOP-4K8O21F\SQLEXPRESS;Database=DP;Integrated Security=True;User Id=root;Password=root";
+    private string ConnectionString = @"Server=DESKTOP-4K8O21F\SQLEXPRESS;Database=DP;Integrated Security=True;User Id=root;Password=root";
 
     private SqlConnection Connection;
 

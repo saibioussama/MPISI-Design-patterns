@@ -1,4 +1,4 @@
-﻿using DesginPatternCL.Models;
+﻿using DesignPatternCL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Repositories
+namespace DesignPatternCL.Repositories
 {
     public class LogRepository
     {

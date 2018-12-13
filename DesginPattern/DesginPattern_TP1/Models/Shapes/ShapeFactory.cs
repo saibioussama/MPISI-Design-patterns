@@ -1,12 +1,12 @@
-﻿using DesginPatternCL.Interfaces;
-using DesginPatternCL.Models.Shapes;
+﻿using DesignPatternCL.Interfaces;
+using DesignPatternCL.Models.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models
+namespace DesignPatternCL.Models
 {
   public class ShapeFactory
   {
@@ -17,10 +17,7 @@ namespace DesginPatternCL.Models
       Square
     }
 
-    private ShapeFactory()
-    {
-
-    }
+    private ShapeFactory() { }
 
     public static Shape Build(ShapeType shapeType, IAction action, Citation citation, int _Poid = 1)
     {

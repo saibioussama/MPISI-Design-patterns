@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models.Shapes
+namespace DesignPatternCL.Models.Shapes
 {
   public abstract class ShapeDecorator : Shape
   {
@@ -14,6 +14,5 @@ namespace DesginPatternCL.Models.Shapes
     {
       Component = _Componenet;
     }
-
   }
 }

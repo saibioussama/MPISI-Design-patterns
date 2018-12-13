@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace DesginPatternCL.Models.Shapes.Decorators
+namespace DesignPatternCL.Models.Shapes.Decorators
 {
   public class BorderColor : ShapeDecorator
   {

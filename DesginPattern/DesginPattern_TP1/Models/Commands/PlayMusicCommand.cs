@@ -1,14 +1,14 @@
-﻿using DesginPatternCL.Actions.Models;
-using DesginPatternCL.Interfaces;
+﻿using DesignPatternCL.Actions.Models;
+using DesignPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models.Commands
+namespace DesignPatternCL.Models.Commands
 {
-  class PlayMusicCommand : ICommand
+  public class PlayMusicCommand : ICommand
   {
     private MusicAction Music;
 

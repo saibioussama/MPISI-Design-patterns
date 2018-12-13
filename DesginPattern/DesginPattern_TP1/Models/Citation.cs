@@ -1,12 +1,12 @@
-﻿using DesginPatternCL.Actions;
-using DesginPatternCL.Interfaces;
+﻿using DesignPatternCL.Actions;
+using DesignPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Models
+namespace DesignPatternCL.Models
 {
   public class Citation : ISubject
   {
@@ -17,12 +17,9 @@ namespace DesginPatternCL.Models
 
     #region Constractors
 
-    public Citation()
-    {
+    public Citation() { }
 
-    }
-
-    public Citation(IAction _action)
+    public Citation(IAction _action) 
     {
       Action = _action;
     }

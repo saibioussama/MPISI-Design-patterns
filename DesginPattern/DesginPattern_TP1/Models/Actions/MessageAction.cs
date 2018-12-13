@@ -1,4 +1,4 @@
-﻿using DesginPatternCL.Interfaces;
+﻿using DesignPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DesginPatternCL.Models.Actions
+namespace DesignPatternCL.Models.Actions
 {
-  class MessageAction : IAction
+  public class MessageAction : IAction
   {
     public void DoSomething()
     {
@@ -17,7 +17,7 @@ namespace DesginPatternCL.Models.Actions
 
     public string GetAction()
     {
-      throw new NotImplementedException();
+      return "Message";
     }
 
     public void Show()

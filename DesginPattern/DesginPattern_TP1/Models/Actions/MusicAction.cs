@@ -1,11 +1,11 @@
-﻿using DesginPatternCL.Interfaces;
+﻿using DesignPatternCL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesginPatternCL.Actions.Models
+namespace DesignPatternCL.Actions.Models
 {
   public class MusicAction : IAction
   {
