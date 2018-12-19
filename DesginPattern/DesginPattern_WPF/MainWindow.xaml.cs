@@ -61,6 +61,8 @@ namespace DesginPattern_WPF
           shape.SystemShape = CreateSquare(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255))));
           break;
         default:
+          shape = ShapeFactory.Build(ShapeFactory.ShapeType.Square, Container.Action, Citation);
+          shape.SystemShape = CreateSquare(Color.FromRgb(Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255)), Convert.ToByte(rand.Next(255))));
           break;
       }
       var s = dict[SelectedShape];

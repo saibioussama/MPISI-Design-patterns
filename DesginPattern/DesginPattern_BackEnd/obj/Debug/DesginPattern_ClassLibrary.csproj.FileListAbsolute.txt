@@ -1,0 +1,6 @@
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\bin\Debug\DesginPattern_TP1.dll
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\bin\Debug\DesginPattern_TP1.pdb
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\obj\Debug\DesginPattern_ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\obj\Debug\DesginPattern_TP1.dll
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\obj\Debug\DesginPattern_TP1.pdb
+C:\Users\saibi\OneDrive\Documents\GitHub\MPISI-Design-patterns\DesginPattern\DesginPattern_TP1\obj\Debug\DesginPattern_ClassLibrary.csprojAssemblyReference.cache
